@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Employee Details</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="">
+</head>
+
+<body>
+  <div class="card">
+    <div class="card-header bg-secondary text-white">
+      <strong>Employee</strong>
+      <button type="button" class="btn btn-primary btn-sm" (click)="onAddEmployee()" style="float:right;">
+        Add Employee
+      </button>
+    </div>
+
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="table-responsive">
+            <table class="table table-success">
+              <thead>
+                <th>Employee Id</th>
+                <th>Employee Name</th>
+                <th>E-mail</th>
+                <th>Department</th>
+                <th>Salary</th>
+                <th>Address</th>
+                <!-- <th>Address</th>
+                <th>DOJ</th>
+                <th>Gender</th> -->
+                <th>Action</th>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of employeeArr">
+                  <td>{{item.empID}}</td>
+                  <td>{{item.empName}}</td>
+                  <td>{{item.empEmailID}}</td>
+                  <td>{{item.empdept}}</td>
+                  <td>{{item.empSalary}}</td>
+                  <td>{{item.empAdd}}</td>
+                  <th><button type="button" class="btn btn-outline-primary btn-sm" (click)="onEdit(item)">Edit</button>&nbsp;<button
+                    type="button" class="btn btn-outline-danger btn-sm" (click)="onDelete(item.empID)">Delete</button></th>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="employeeModel">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <!-- Model Header -->
+        <div class="modal-header bg-success text-white">
+          <h6 class="modal-title">Add Employee Details</h6>
+          <button type="button" class="btn-close text-white btn-sm" (click)="onCloseModel()"
+            style="float:right;"></button>
+        </div>
+
+        <form #userForm="ngForm">
+          <!-- Model Body -->
+          <div class="modal-body">
+            <div class="row">
+              <!-- <div class="col-md-6">
+                <label class="for-label">Employee ID</label>
+                <input type="text" name="empID" id="empID" placeholder="Enter Employee ID" class="form-control" [(ngModel)]="employee.empID" />
+              </div> -->
+              <div class="col-md-12">
+                <label class="for-label">Employee Full Name</label>
+                <input type="text" name="empName" id="empName" placeholder="Enter Employee Name" class="form-control" [(ngModel)]="employee.empName"/>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-6">
+                <label class="for-label">E-mail</label>
+                <input type="text" name="empEmailID" id="empEmailID" placeholder="Enter Employee Email ID" [(ngModel)]="employee.empEmailID"
+                  class="form-control" />
+              </div>
+              <div class="col-md-6">
+                <label class="for-label">Department</label>
+                <select class="form-control" id="empdept" name="empdept" [(ngModel)]="employee.empdept">
+                  <option selected disabled>Select Department</option>
+                  <option>HR</option>
+                  <option>Purchase</option>
+                  <option>Sales</option>
+                  <option>Account</option>
+                </select>
+              </div>
+            </div>
+
+            <br>
+            <div class="row">
+              <div class="col-md-6">
+                <label class="for-label">Salary</label>
+                <input type="text" name="empSalary" id="empSalary" placeholder="Enter Employee Salary" [(ngModel)]="employee.empSalary"
+                  class="form-control" />
+              </div>
+              <div class="col-md-6">
+                <label class="for-label">Address</label>
+                <textarea class="form-control" name="empAdd" id="empAdd" rows="2" [(ngModel)]="employee.empAdd"></textarea>
+              </div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-12">
+                <button type="button" class="btn btn-primary text-right" *ngIf="employee.empID == 0" (click)="saveEmployee(userForm)">Submit</button>
+                <button type="button" class="btn btn-primary text-right" *ngIf="employee.empID !== 0" (click)="updateEmployee()">Update</button>
+              </div>
+            </div>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <app-footer></app-footer>
+  <script src="" async defer></script>
+</body>
+
+</html>
